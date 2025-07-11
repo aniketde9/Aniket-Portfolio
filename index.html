@@ -14,18 +14,18 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/GLTFLoader.js"></script>
     <style>
         :root {
-            --primary-color1: #FF4D71; /* Pinkish-red for subtle accents */
-            --primary-color2: #305A81; /* Dark blue for main backgrounds */
+            --primary-color1: #FF4D71; /* Pinkish-red */
+            --primary-color2: #305A81; /* Dark blue */
             --secondary-color1: #FF6545; /* Orange for hovers */
             --secondary-color2: #6BCEFF; /* Light blue for links */
             --secondary-color3: #FFCA3A; /* Yellow for highlights */
-            --neutral-color1: #C6CCD7; /* Light gray for sections/text */
-            --neutral-color2: #212C35; /* Dark gray for body bg/text */
-            --text-color: #212C35; /* Dark gray main text */
-            --highlight-color: #305A81; /* Dark blue for subtle emphasis */
-            --shadow-color: rgba(198, 204, 215, 0.2); /* Soft light gray shadow */
-            --gradient-bg: linear-gradient(135deg, #C6CCD7, #305A81); /* Light gray to dark blue gradient */
-            --link-color: #FFCA3A; /* Yellow for links */
+            --neutral-color1: #ffffff; /* White for most elements */
+            --neutral-color2: #ffffff; /* White for text */
+            --text-color: #ffffff; /* White main text */
+            --highlight-color: #FF4D71; /* Pink for emphasis */
+            --shadow-color: rgba(255, 77, 113, 0.2); /* Soft pink shadow */
+            --gradient-bg: linear-gradient(135deg, #FF4D71, #305A81); /* Primary gradient */
+            --link-color: #6BCEFF; /* Light blue links */
         }
         body {
             font-family: 'Roboto', sans-serif; /* Body typography */
@@ -42,13 +42,13 @@
             --secondary-color1: #FF6545;
             --secondary-color2: #6BCEFF;
             --secondary-color3: #FFCA3A;
-            --neutral-color1: #212C35; /* Darker for dark mode */
-            --neutral-color2: #C6CCD7;
-            --text-color: #C6CCD7; /* Light text in dark */
+            --neutral-color1: #ffffff; /* Keep white dominant */
+            --neutral-color2: #ffffff;
+            --text-color: #ffffff;
             --highlight-color: #FF4D71;
-            --shadow-color: rgba(33, 44, 53, 0.3); /* Darker shadow */
-            --gradient-bg: linear-gradient(135deg, #212C35, #305A81); /* Dark gradient */
-            --link-color: #FFCA3A; /* Yellow links */
+            --shadow-color: rgba(48, 90, 129, 0.1); /* Soft blue shadow */
+            --gradient-bg: linear-gradient(135deg, #305A81, #FF4D71); /* Reversed gradient */
+            --link-color: #FF6545; /* Orange links in dark */
         }
         h1, h2, h3 {
             font-family: 'JetBrains Mono', monospace; /* Headlines typography */
@@ -63,7 +63,6 @@
             text-align: center;
             padding: 0 20px;
             overflow: hidden;
-            background-color: var(--neutral-color1); /* Light gray header bg */
         }
         #particles-js {
             position: absolute;
@@ -87,20 +86,20 @@
         header h1 {
             font-size: 4em;
             margin: 0;
-            color: #ffffff; /* White for name */
+            color: var(--neutral-color1); /* White */
             font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Neon white glow */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Subtle white glow */
         }
         header p.title {
             font-size: 1.5em;
-            margin: 10px 0 30px 0; /* Added bottom margin for spacing */
-            color: var(--neutral-color2); /* Dark gray subtext */
+            margin: 10px 0 30px 0;
+            color: var(--neutral-color1); /* White */
         }
         header p.social {
             margin: 0;
         }
         header a {
-            color: #ffffff; /* White icons */
+            color: var(--neutral-color1); /* White icons */
             margin: 0 15px;
             transition: transform 0.3s;
         }
@@ -110,7 +109,7 @@
         nav {
             position: sticky;
             top: 0;
-            background: rgba(198, 204, 215, 0.5); /* Light gray with opacity */
+            background: rgba(255, 255, 255, 0.1); /* Transparent white */
             backdrop-filter: blur(10px);
             padding: 10px 20px;
             z-index: 10;
@@ -125,29 +124,26 @@
             padding: 0;
         }
         nav li {
-            margin: 0 30px; /* Increased spacing between items */
+            margin: 0 40px;
         }
         nav a {
-            color: var(--text-color);
+            color: var(--neutral-color1); /* White text */
             text-decoration: none;
             font-weight: bold;
             position: relative;
-            padding: 8px 16px; /* Added padding for button-like feel */
-            background: var(--neutral-color2); /* Dark gray bg for visibility */
-            border-radius: 5px; /* Rounded corners */
+            padding: 8px 16px;
+            background: transparent;
+            border-radius: 5px;
             transition: background 0.3s, color 0.3s;
         }
         nav a:hover {
-            background: var(--secondary-color1); /* Orange hover */
-            color: var(--neutral-color1); /* Light text on hover */
-        }
-        nav a::after {
-            display: none; /* Removed underline for cleaner look */
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--highlight-color); /* Pink hover text */
         }
         #theme-toggle {
             background: transparent;
             border: none;
-            color: var(--text-color);
+            color: var(--neutral-color1); /* White */
             cursor: pointer;
             font-size: 1.2em;
             margin-left: 20px;
@@ -156,18 +152,17 @@
             max-width: 1200px;
             margin: 50px auto;
             padding: 40px;
-            background: var(--neutral-color1); /* Light gray sections */
+            background: rgba(255, 255, 255, 0.05); /* Subtle white overlay */
             border-radius: 20px;
-            box-shadow: 0 0 10px var(--shadow-color); /* Softer shadow */
+            box-shadow: 0 0 10px var(--shadow-color);
             backdrop-filter: blur(5px);
             transition: transform 0.5s;
-            position: relative; /* For next button positioning */
         }
         section:hover {
             transform: translateY(-10px);
         }
         h2 {
-            color: #ffffff; /* White for section headlines */
+            color: var(--neutral-color1); /* White */
             border-bottom: 2px solid var(--primary-color1); /* Pink border */
             padding-bottom: 10px;
             display: flex;
@@ -175,7 +170,7 @@
             gap: 10px;
         }
         h3 {
-            color: #ffffff; /* White for sub-headlines */
+            color: var(--neutral-color1); /* White */
         }
         ul {
             list-style: none;
@@ -184,15 +179,15 @@
         ul li {
             margin: 15px 0;
             padding: 10px;
-            background: var(--neutral-color2); /* Dark gray list bg */
+            background: rgba(255, 255, 255, 0.1); /* White transparent bg */
             border-radius: 10px;
             transition: background 0.3s, transform 0.3s;
-            color: var(--neutral-color1); /* Light gray text in lists */
+            color: var(--neutral-color1); /* White text */
         }
         ul li:hover {
-            background: var(--primary-color1); /* Pink on hover for better contrast */
+            background: var(--primary-color1); /* Pink hover */
             transform: scale(1.02);
-            color: #ffffff; /* White text on hover for visibility */
+            color: #ffffff; /* White */
         }
         table {
             width: 100%;
@@ -202,14 +197,16 @@
         th, td {
             padding: 15px;
             text-align: left;
-            border: 1px solid var(--primary-color2); /* Dark blue borders */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* White borders */
+            background: rgba(255, 255, 255, 0.05); /* Transparent white */
+            color: var(--neutral-color1); /* White text */
         }
         th {
             background: var(--primary-color1); /* Pink th bg */
-            color: var(--neutral-color2); /* Dark gray th text */
+            color: #ffffff; /* White */
         }
         tr:hover {
-            background: var(--primary-color1); /* Pink hover for tables */
+            background: var(--primary-color1); /* Pink hover */
         }
         a.microapp-link {
             color: var(--link-color);
@@ -218,7 +215,7 @@
             transition: color 0.3s;
         }
         a.microapp-link:hover {
-            color: #ffffff; /* White on hover for visibility in pink row */
+            color: #ffffff; /* White on hover */
         }
         .projects {
             display: grid;
@@ -227,52 +224,24 @@
         }
         .project-card {
             padding: 20px;
-            background: var(--neutral-color2); /* Dark gray cards */
+            background: rgba(255, 255, 255, 0.1); /* Transparent white cards */
             border-radius: 15px;
-            box-shadow: 0 0 10px var(--shadow-color); /* Softer shadow */
+            box-shadow: 0 0 10px var(--shadow-color);
             transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
             opacity: 0.9;
-            color: var(--neutral-color1); /* Light gray card text */
+            color: var(--neutral-color1); /* White card text */
         }
         .project-card:hover {
-            transform: scale(1.05) rotate(1deg); /* Subtler rotation */
+            transform: scale(1.05) rotate(1deg);
             box-shadow: 0 0 15px var(--shadow-color);
             opacity: 1;
-            background: var(--secondary-color2); /* Light blue hover */
-        }
-        .next-section-btn {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 100;
-        }
-        .next-section-btn a {
-            display: block;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color1); /* Pink micro button */
-            color: #ffffff;
-            border: none;
-            border-radius: 50%; /* Circular for micro feel */
-            cursor: pointer;
-            text-align: center;
-            line-height: 40px;
-            font-size: 1.2em;
-            transition: background 0.3s;
-            text-decoration: none;
-        }
-        .next-section-btn a:hover {
-            background: var(--secondary-color1); /* Orange hover */
+            background: var(--primary-color1); /* Pink hover */
         }
         footer {
             text-align: center;
             padding: 20px;
-            background: var(--primary-color2); /* Dark blue footer */
-            color: var(--neutral-color1); /* Light gray footer text */
+            background: transparent;
+            color: var(--neutral-color1); /* White footer text */
             margin-top: 50px;
         }
         @media (max-width: 768px) {
@@ -282,19 +251,10 @@
             section {
                 padding: 20px;
             }
-            .next-section-btn {
-                right: 10px;
-            }
-            .next-section-btn a {
-                width: 30px;
-                height: 30px;
-                line-height: 30px;
-                font-size: 1em;
-            }
         }
     </style>
 </head>
-<body class="dark-mode">
+<body>
     <header>
         <div id="particles-js"></div>
         <div id="three-js-bg"></div>
@@ -319,13 +279,6 @@
         </ul>
         <button id="theme-toggle"><i class="fas fa-sun"></i></button>
     </nav>
-
-    <div class="next-section-btn">
-        <a href="#intro" title="Intro"><i class="fas fa-chevron-down"></i></a>
-        <a href="#what-i-do" title="What I Do"><i class="fas fa-chevron-down"></i></a>
-        <a href="#skills" title="Skills"><i class="fas fa-chevron-down"></i></a>
-        <a href="#projects" title="Projects"><i class="fas fa-chevron-down"></i></a>
-    </div>
 
     <section id="intro" data-aos="zoom-in">
         <h2><i class="fas fa-user-astronaut"></i> Quick Intro</h2>
@@ -467,11 +420,11 @@
         particlesJS('particles-js', {
             particles: {
                 number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#305A81' }, // Dark blue particles
+                color: { value: '#FF4D71' }, // Primary pink particles
                 shape: { type: 'polygon', polygon: { nb_sides: 5 } },
                 opacity: { value: 0.5, random: true },
                 size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: '#C6CCD7', opacity: 0.4, width: 1 }, // Light gray lines
+                line_linked: { enable: true, distance: 150, color: '#305A81', opacity: 0.4, width: 1 }, // Dark blue lines
                 move: { enable: true, speed: 4, direction: 'none', random: true, straight: false, out_mode: 'out' }
             },
             interactivity: {
@@ -491,7 +444,7 @@
         // Load your new GLB asset (replace 'path/to/your-new-asset.glb' with the actual file path or URL)
         let model;
         const loader = new THREE.GLTFLoader();
-        loader.load('./assets/opikalogo.glb', (gltf) => {
+        loader.load('path/to/your-new-asset.glb', (gltf) => {
             model = gltf.scene;
             scene.add(model);
             // Adjust position, scale, rotation as needed for your asset
