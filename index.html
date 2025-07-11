@@ -35,6 +35,7 @@
             color: var(--text-color);
             overflow-x: hidden;
             transition: all 0.5s ease;
+            font-size: 1.2em; / Added here */
         }
         body.dark-mode {
             --primary-color1: #FF4D71;
@@ -91,7 +92,7 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Subtle white glow */
         }
         header p.title {
-            font-size: 1.5em;
+            font-size: 2.5em;
             margin: 10px 0 30px 0;
             color: var(--neutral-color1); /* White */
         }
@@ -145,7 +146,7 @@
             border: none;
             color: var(--neutral-color1); /* White */
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin-left: 20px;
         }
         section {
@@ -243,6 +244,18 @@
             background: transparent;
             color: var(--neutral-color1); /* White footer text */
             margin-top: 50px;
+        }
+        .contact-me {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin: 50px auto;
+            max-width: 800px;
+        }
+        .contact-me p {
+            margin: 10px 0;
+            font-size: 1.5em;
         }
         @media (max-width: 768px) {
             header h1 {
@@ -413,6 +426,9 @@
 
     <footer>
         <p>© 2025 Aniket De. All rights reserved.</p>
+        <div class="contact-me">
+            <p>If you have questions or need to talk to me - you can always reach out to me at <a href="mailto:aniket@opika.co" style="color: #ffffff; font-weight: bold; text-decoration: none;">aniket@opika.co</a></p>
+        </div>
     </footer>
 
     <script>
@@ -444,12 +460,14 @@
         // Load your new GLB asset (replace 'path/to/your-new-asset.glb' with the actual file path or URL)
         let model;
         const loader = new THREE.GLTFLoader();
-        loader.load('path/to/your-new-asset.glb', (gltf) => {
+        loader.load('./assets/opikalogo.glb', (gltf) => { // Updated path to your GLB file
             model = gltf.scene;
             scene.add(model);
             // Adjust position, scale, rotation as needed for your asset
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1); // White light, intensity 1
+            scene.add(ambientLight);
             model.position.set(0, 0, -20);
-            model.scale.set(5, 5, 5); // Scale up if small
+            model.scale.set(100, 100, 100); // Scale up if small
             model.rotation.y = Math.PI / 4; // Initial rotation
         }, undefined, (error) => {
             console.error('Error loading GLB:', error);
@@ -477,7 +495,7 @@
         // Typed.js - Type in without backspacing or looping
         new Typed('#typed-intro', {
             strings: ["Engineer by degree, curious by nature. I’ve worked across biotech, Web3, crypto, AI, and startups — not because I had to, but because I wanted to try everything. These days, I wear multiple hats at Opika where we invest in Web3 startups and help them find the right people. On the side, I build bots, apps, automations — mostly powered by AI (including what you are seeing right now)."],
-            typeSpeed: 20,
+            typeSpeed: 25,
             loop: false,
             backSpeed: 0, // No backspacing
             showCursor: true,
